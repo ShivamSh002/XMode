@@ -7,11 +7,13 @@ function App() {
     username: "",
     email: "",
     phone: "",
-    dob: "",
+    dob: ""
   });
+
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (isOpen && !event.target.closest(".modal")) {
@@ -42,30 +44,35 @@ function App() {
     } else if (!validatePhoneNumber(formData.phone)) {
       alert("Invalid phone number. Please enter a 10-digit phone number.");
     } else {
+      // Handle form submission logic here
+      // For now, just close the modal
       toggleModal();
     }
   };
 
   const validateEmail = (email) => {
+    // Regular expression for email validation
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
   };
 
   const validatePhoneNumber = (phone) => {
+    // Regular expression for 10-digit phone number validation
     const re = /^\d{10}$/;
     return re.test(phone);
   };
 
   return (
     <div>
-      <h1> User Details Modal </h1>{" "}
-      <button onClick={toggleModal}> Open Form </button>{" "}
+      <h1>User Details Modal</h1>
+      <button onClick={toggleModal}>Open Form</button>
       {isOpen && (
         <div className="modal-overlay">
           <div className="modal">
             <div className="modal-content">
               <form onSubmit={handleSubmit} className="form">
-                <h1> Fill Details </h1> <h2> Username: </h2>{" "}
+                <h1>Fill Details</h1>
+                <h2>Username:</h2>
                 <input
                   type="text"
                   name="username"
@@ -74,7 +81,7 @@ function App() {
                   onChange={handleInputChange}
                   required
                 />
-                <h2> Email Address: </h2>{" "}
+                <h2>Email Address:</h2>
                 <input
                   type="email"
                   name="email"
@@ -83,7 +90,7 @@ function App() {
                   onChange={handleInputChange}
                   required
                 />
-                <h2> Phone Number: </h2>{" "}
+                <h2>Phone Number:</h2>
                 <input
                   type="tel"
                   name="phone"
@@ -92,7 +99,7 @@ function App() {
                   onChange={handleInputChange}
                   required
                 />
-                <h2> Date of Birth: </h2>{" "}
+                <h2>Date of Birth:</h2>
                 <input
                   type="date"
                   name="dob"
@@ -103,14 +110,14 @@ function App() {
                 />
                 <div>
                   <button type="submit" className="submit-button">
-                    Submit{" "}
-                  </button>{" "}
-                </div>{" "}
-              </form>{" "}
-            </div>{" "}
-          </div>{" "}
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-      )}{" "}
+      )}
     </div>
   );
 }
