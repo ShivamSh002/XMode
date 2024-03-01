@@ -9,6 +9,9 @@ function App() {
     phone: "",
     dob: "",
   });
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (isOpen && !event.target.closest(".modal")) {
@@ -22,10 +25,6 @@ function App() {
     };
   }, [isOpen]);
 
-  const toggleModal = () => {
-    setIsOpen(!isOpen);
-  };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -34,7 +33,6 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const currentDate = new Date();
-
     const enteredDate = new Date(formData.dob);
 
     if (enteredDate > currentDate) {
